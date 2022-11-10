@@ -66,6 +66,7 @@
               <th>Assunto</th>
               <th>Mensagem</th>
               <th>Opção de Resposta</th>
+              <th>Ação</th>
           </tr>
           {% for value in contatos %}                        
             <tr>
@@ -75,6 +76,12 @@
               <td>{{contatos[value]['assunto'] }}</td>
               <td>{{contatos[value]['mensagem'] }}</td>
               <td>{{contatos[value]['resposta'] }}</td>
+              <td>
+                <form action="/limparRegistro/{{value}}" method='POST'>              
+                  <input type='submit' value='Eliminar registros' name='deleteOne' />
+                </form>  
+              </td>
+                
             </tr> 
           {% endfor %}                      
         </table>       
