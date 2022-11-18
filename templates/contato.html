@@ -48,31 +48,27 @@
                 </li>
 
                 <li>
-                    <fieldset>
-                        <legend>Opções de Resposta</legend>
-                        {% set check_opcoes = ['E-mail', 'Telefone'] %}
-                        {%for check_opcoes in check_opcoes %}
-                          {% if check_opcoes in contato['resposta'] %}
-                            <label for={{check_opcao}}>{{check_opcao}}
-                              <!--<input id={{check_opcao}} type="checkbox" name="resposta" value="{{check_opcao}}" checked> -->
-                              <input id="{{check_opcao}}" type="checkbox" name="resposta" value="Email" checked>
-                            </label>    
-                          {% else %}
-                            <label for="contato-resposta-email">E-Mail
-                              <input id="contato-resposta-email" type="checkbox" name="resposta" value={{check_opcao}}">
-                            </label>
-                          {% endif %}
-                        {% endfor %}
-                    </fieldset>
+                 <fieldset>
+                  <legend>Opções de Resposta</legend>
+                  {% set check_opcoes = ['Email', 'Telefone'] %}
+                  {% for check_opcao in check_opcoes %}
+                  {% if check_opcao in contato['resposta'] %} 
+                  
+                  <label for="{{check_opcao}}">{{check_opcao}}
+                  <input id="{{check_opcao}}" type="checkbox" name="resposta" value="{{check_opcao}}" checked/>
+                  {% else %}
+                  <label for="{{check_opcao}}">{{check_opcao}}
+                  <input id="{{check_opcao}}" type="checkbox" name="resposta" value="{{check_opcao}}"/>
+                  </label>
+                  {% endif %}
+                  {% endfor %}
+                  </fieldset>
                 </li>
               
             </ul>            
-            <input type="submit" value="Salvar" name="save" />            
           </div>
+          <input type="submit" value="Salvar" name="save" />            
         </form>
-        <form action="/limparBanco" method='POST'>              
-              <input type='submit' value='Eliminar registros' name='delete' />
-        </form>          
         <br>     
       </div>
     </section>
