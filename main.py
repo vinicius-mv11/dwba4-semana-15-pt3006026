@@ -74,7 +74,7 @@ def update(email):
                 "resposta": contatos[email]['resposta']
             }
             print(contato)
-            return flask.render_template('contato-x.html', contato=contato)
+            return flask.render_template('contato.html', contato=contato)
     except Exception as e:
         logging.exception(e)
         return flask.render_template('contatos.html')
