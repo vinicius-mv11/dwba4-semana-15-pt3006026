@@ -17,6 +17,7 @@ def internal_server_error(e: str):
 @app.route('/', methods=['GET', 'POST'])
 def cadastroContatos():
     try:
+        print('test')
         contatos = db.get('contatos', {})
         print(contatos)
         if flask.request.method == "POST":
@@ -52,6 +53,28 @@ def limparRegistro(email):
         del contatos[email]
         db['contatos'] = contatos
         return redirect('/')
+    except Exception as e:
+        logging.exception(e)
+        return flask.render_template('contatos.html')
+
+
+@app.route('/update/<email>', methods=['POST'])
+def update(email):
+    print('entering update')
+    try:
+        if (flask.request.method == "POST"):
+            contatos = db.get('contatos', {})
+            contato = {}
+            contato = {
+                "email": email,
+                "nome": contatos[email]["nome"],
+                "telefone": contatos[email]["telefone"],
+                "assunto": contatos[email]["assunto"],
+                "mensagem": contatos[email]["mensagem"],
+                "resposta": contatos[email]["resposta"],
+            }
+            print(contato)
+            return flask.render_template('contato.html', contato=contato)
     except Exception as e:
         logging.exception(e)
         return flask.render_template('contatos.html')
