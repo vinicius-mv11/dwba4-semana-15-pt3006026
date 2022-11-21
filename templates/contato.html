@@ -11,32 +11,32 @@
             <ul>
                 <li>
                     <label for="contato-nome">Nome</label>
-                    <input type="text" name="nome" id="contato-nome" required value={{contato['nome']}}/>
+                    <input type="text" name="nome" id="contato-nome" required value="{{contato['nome']}}" />
                 </li>
               
                 <br>              
                 <li>
                     <label for="contato-email">E-Mail</label>
-                    <input type="email" name="email" id="contato-email" required value="{{contato['email']}}"/>
+                    <input type="email" name="email" id="contato-email" required value="{{contato['email']}}" />
                 </li>
               
                 <li>
                     <label for="contato-telefone">Telefone (99) 99999-9999 </label>
-                    <input type="text" name="telefone" id="contato-telefone" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" required value="{{contato['telefone']}}"/>
+                    <input type="text" name="telefone" id="contato-telefone" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" required value="{{contato['telefone']}}" />
                 </li>
 
                 <li>    
     
                   <label for="contato-assunto">Assunto</label>                   
                   <select name="assunto" id="contato-assunto" required/>
-                  <option value=""> -- Selecione --</option>                                             
+                  <option value="">-- Selecione --</option>                                             
                 
                     {% set opcoes = ['Reclamação', 'Sugestão'] %}
                     {% for opcao in opcoes %}
                     {% if opcao in contato['assunto'] %}
-                    <option value="{{ contato['assunto'] }}" selected="selected">{{contato['assunto']}}          </option>
+                    <option value="{{contato['assunto']}}" selected="selected">{{contato['assunto']}}          </option>
                     {% else %}
-                    <option value="{{ opcao }}">{{ opcao }}</option>
+                    <option value="{{opcao}}">{{opcao}}</option>
                     {% endif %}
                     {% endfor %}
                   </select>                   
@@ -50,15 +50,16 @@
                 <li>
                  <fieldset>
                   <legend>Opções de Resposta</legend>
-                  {% set check_opcoes = ['Email', 'Telefone'] %}
+                  {% set check_opcoes = ['E-mail', 'Telefone'] %}
                   {% for check_opcao in check_opcoes %}
                   {% if check_opcao in contato['resposta'] %} 
                   
                   <label for="{{check_opcao}}">{{check_opcao}}
-                  <input id="{{check_opcao}}" type="checkbox" name="resposta" value="{{check_opcao}}" checked/>
+                    <input id="{{check_opcao}}" type="checkbox" name="resposta" value="{{check_opcao}}" checked />
+                  </label>
                   {% else %}
                   <label for="{{check_opcao}}">{{check_opcao}}
-                  <input id="{{check_opcao}}" type="checkbox" name="resposta" value="{{check_opcao}}"/>
+                    <input id="{{check_opcao}}" type="checkbox" name="resposta" value="{{check_opcao}}" />
                   </label>
                   {% endif %}
                   {% endfor %}

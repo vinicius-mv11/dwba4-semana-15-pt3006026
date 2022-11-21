@@ -28,7 +28,7 @@
                 <li>
                     <label for="contato-assunto">Assunto </label>
                     <select name="assunto" id="contato-assunto" required="">
-                       <option value=""> -- Selecione --</option>                        
+                       <option value="">-- Selecione --</option>                        
                        <option value="Reclamação">Reclamação</option>
                        <option value="Sugestão">Sugestão</option>
                      </select>  
@@ -45,8 +45,9 @@
                         <label for="contato-resposta-email">E-Mail
                             <input id="contato-resposta-email" type="checkbox" name="resposta" value="E-mail">
                         </label>
-                        <label for="contato-resposta-telefone">Telefone</label>
-                        <input id="contato-resposta-telefone" type="checkbox" name="resposta" value="Telefone">
+                        <label for="contato-resposta-telefone">Telefone
+                          <input id="contato-resposta-telefone" type="checkbox" name="resposta" value="Telefone">
+                        </label>
                     </fieldset>
                 </li>
               
@@ -70,20 +71,22 @@
           </tr>
           {% for value in contatos %}                        
             <tr>
-              <td>{{contatos[value]['nome'] }}</td>
+              <td>{{contatos[value]['nome']}}</td>
               <td>{{value}}</td>
-              <td>{{contatos[value]['telefone'] }}</td>
-              <td>{{contatos[value]['assunto'] }}</td>
-              <td>{{contatos[value]['mensagem'] }}</td>
-              <td>{{contatos[value]['resposta'] }}</td>
+              <td>{{contatos[value]['telefone']}}</td>
+              <td>{{contatos[value]['assunto']}}</td>
+              <td>{{contatos[value]['mensagem']}}</td>
+              <td>{{contatos[value]['resposta']}}</td>
               <td>
-                <form action="/limparRegistro/{{value}}" method='POST'>              
-                  <input type='submit' value='Eliminar registros' name='deleteOne' />
-                </form>
-
-                <form action="/update/{{value}}" method='POST'>              
-                  <input type='submit' value='Atualizar registro' name='updateOne' />
-                </form>
+                <div class="btn-group">
+                  <form action="/limparRegistro/{{value}}" method='POST'>              
+                    <input type='submit' value='Eliminar registro' name='deleteOne' />
+                  </form>
+                  
+                  <form action="/update/{{value}}" method='POST'>              
+                    <input type='submit' value='Alterar registro' name='updateOne' />
+                  </form>
+                </div>
               </td>
                 
             </tr> 

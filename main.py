@@ -17,19 +17,17 @@ def internal_server_error(e: str):
 @app.route('/', methods=['GET', 'POST'])
 def cadastroContatos():
     try:
-        print('test')
         contatos = db.get('contatos', {})
-        print(contatos)
-        if flask.request.method == "POST":
+        if (flask.request.method == "POST"):
             contatos[flask.request.form['email']] = {
                 'nome': flask.request.form['nome'],
                 'email': flask.request.form['email'],
                 'telefone': flask.request.form['telefone'],
                 'assunto': flask.request.form['assunto'],
                 'mensagem': flask.request.form['mensagem'],
-                'resposta': flask.request.form['resposta'],
+                'resposta': flask.request.form['resposta']
             }
-        db['contatos'] = contatos
+            db['contatos'] = contatos
         return flask.render_template('contatos.html', contatos=contatos)
     except Exception as e:
         logging.exception('failed to database')
@@ -60,7 +58,6 @@ def limparRegistro(email):
 
 @app.route('/update/<email>', methods=['POST'])
 def update(email):
-    print('entering update')
     try:
         if (flask.request.method == "POST"):
             contatos = db.get('contatos', {})
